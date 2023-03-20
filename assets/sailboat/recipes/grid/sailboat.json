@@ -1,0 +1,35 @@
+﻿[
+  {
+    "name": "Wood sailboat",
+    "ingredientPattern": "RSN,LSL,LLL",
+    "ingredients": {
+      "L": {
+        "type": "item",
+        "code": "game:plank-*",
+        "name": "wood",
+        "quantity": 4
+      },
+      "R": {
+        "type": "item",
+        "code": "game:rope",
+        "quantity": 4
+      },
+      "S": {
+        "type": "item",
+        "code": "game:sail",
+        "quantity": 4
+      },
+      "N": {
+        "type": "item",
+        "code": "game:metalnailsandstrips-*",
+        "quantity": 8
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {
+      "type": "item",
+      "code": "sailboat:sailboat-{wood}"
+    }
+  }
+]

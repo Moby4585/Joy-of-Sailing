@@ -1,0 +1,55 @@
+﻿{
+	"code": "sailboat",
+	"class": "EntitySailboat",
+	"variantgroups": [
+		{
+			"code": "material",
+			"loadFromProperties": "block/wood"
+		}
+	],
+	"hitboxSize": {
+		"x": 3,
+		"y": 0.6,
+		"z": 2.0
+	},
+	"client": {
+		"size": 1,
+		"renderer": "Shape",
+		"shapeByType": {
+			"*": { "base": "sailboat" }
+		},
+		"texturesByType": {
+			"*": {
+				"ebony": { "base": "game:block/wood/bark/{material}" },
+				"oak": { "base": "game:block/wood/debarked/{material}" },
+				"oak1": { "base": "game:block/wood/planks/{material}1" },
+				"oak2": { "base": "game:block/wood/planks/{material}2" },
+				"oak3": { "base": "game:block/wood/planks/{material}3" },
+				"oak4": { "base": "game:block/wood/planks/{material}4" }
+			}
+		},
+		"behaviors": [
+			{
+				"code": "passivephysics",
+				"groundDragFactor": 1,
+				"airDragFallingFactor": 0.5,
+				"gravityFactor": 1.0
+			},
+			{ "code": "interpolateposition" },
+			{ "code": "floatupwhenstuck" }
+		]
+	},
+	"server": {
+		"behaviors": [
+			{
+				"code": "passivephysics",
+				"groundDragFactor": 1,
+				"airDragFallingFactor": 0.5,
+				"gravityFactor": 1.0
+			},
+			{ "code": "floatupwhenstuck" }
+		]
+	},
+	"sounds": {
+	}
+}

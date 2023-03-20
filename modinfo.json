@@ -1,0 +1,11 @@
+{
+  "type": "code",
+  "modid": "sailboat",
+  "name": "Joy of Sailing",
+  "authors": ["Moby_"],
+  "description": "Adds a semi-realistic sailboat to the game",
+  "version": "1.0.0-pre.1",
+  "dependencies": {
+    "game": ""
+  }
+}
