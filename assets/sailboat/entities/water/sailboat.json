@@ -4,13 +4,14 @@
 	"variantgroups": [
 		{
 			"code": "material",
+			"states": [ "aged" ],
 			"loadFromProperties": "block/wood"
 		}
 	],
 	"hitboxSize": {
-		"x": 3,
+		"x": 4,
 		"y": 0.6,
-		"z": 2.0
+		"z": 2
 	},
 	"client": {
 		"size": 1,
@@ -19,6 +20,14 @@
 			"*": { "base": "sailboat" }
 		},
 		"texturesByType": {
+			"*-aged": {
+				"ebony": { "base": "game:block/wood/bark/aged" },
+				"oak": { "base": "game:block/wood/debarked/aged" },
+				"oak1": { "base": "game:block/wood/planks/aged/generic1" },
+				"oak2": { "base": "game:block/wood/planks/aged/generic2" },
+				"oak3": { "base": "game:block/wood/planks/aged/generic3" },
+				"oak4": { "base": "game:block/wood/planks/aged/generic4" }
+			},
 			"*": {
 				"ebony": { "base": "game:block/wood/bark/{material}" },
 				"oak": { "base": "game:block/wood/debarked/{material}" },

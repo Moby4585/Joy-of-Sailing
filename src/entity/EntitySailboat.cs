@@ -61,8 +61,11 @@ namespace sailboat
         /// <summary>
         /// The speed this boad can reach at full power
         /// </summary>
-        public virtual float SpeedMultiplier => 15f;
+        public virtual float SpeedMultiplier => 30f;
         public virtual float RotationSpeedMultiplier => 2f;
+
+        double windAngle = 0f;
+        double windSpeed = 0f;
 
         double realSpeedMultiplier = 0f;
 
@@ -71,7 +74,7 @@ namespace sailboat
 
         public IMountable[] MountPoints => Seats;
 
-        public Vec3f[] MountOffsets = new Vec3f[] { new Vec3f(-1.2f, 0.2f, 0), new Vec3f(0.1f, 0.2f, 0) };
+        public Vec3f[] MountOffsets = new Vec3f[] { new Vec3f(-1.4f, 0.2f, 0), new Vec3f(-0.1f, 0.2f, 0) };
 
         Shape sailboatShape;
         ICoreClientAPI capi;
@@ -79,14 +82,18 @@ namespace sailboat
         public override string GetInfoText()
         {
             string baseDesc = base.GetInfoText();
+            //baseDesc += "\nAngle: " + windAngle.ToString();
+            //baseDesc += "\nWind: " + World.BlockAccessor.GetWindSpeedAt(SidedPos.XYZ).X.ToString() + " ; " + World.BlockAccessor.GetWindSpeedAt(SidedPos.XYZ).Z.ToString();
+
             /*float trueYaw = ((Pos.Yaw * 57.2958f) % 360f - 180f);
             float sailSpeed = (float)((SailAngle + trueYaw/2f) * (Math.Abs(SailAngle) - Math.Abs(trueYaw) > 1f ? 0f : 1f));
             double sailMultiplier = clamp(0.0, 1.0, Math.Exp(-Math.Abs(sailSpeed / 30f))) * (Math.Abs(SailAngle) - Math.Abs(trueYaw) > 1f ? 0f : 1f);
-            baseDesc += "\nSail angle speed:" + sailMultiplier;*/
-
+            baseDesc += "\nSail angle speed:" + sailMultiplier;
+            float trueYaw = (Pos.Yaw * 57.2958f + (float)windAngle) % 360f - 180f;
+            baseDesc += "\nSpeed: " + (1d + 0.5d * Math.Sin(Math.Abs(trueYaw * GameMath.DEG2RAD))).ToString();
 
             //baseDesc += "\n" + weatherSystem.getWeatherDataReader().GetWindSpeed(Pos.AsBlockPos.ToVec3d()).ToString();
-            //baseDesc += "\n" + ((float)weatherSystem.getWeatherDataReader().GetWindSpeed(Pos.AsBlockPos.ToVec3d()) * (SailLevel / 3f) * SpeedMultiplier).ToString();
+            //baseDesc += "\n" + ((float)weatherSystem.getWeatherDataReader().GetWindSpeed(Pos.AsBlockPos.ToVec3d()) * (SailLevel / 3f) * SpeedMultiplier).ToString();*/
             return baseDesc;
         }
 
@@ -160,7 +167,7 @@ namespace sailboat
             }
             if (esr.OverrideEntityShape != null)
             {
-                float yawAdjusted = (Pos.Yaw * 57.2958f) % 360f - 180f;
+                float yawAdjusted = (Pos.Yaw * 57.2958f + (float)windAngle) % 360f - 180f;
                 DesiredSailAngle = clamp(15.0, 80.0, Math.Min(Math.Abs(SailLimit), Math.Abs(yawAdjusted))) * Math.Sign(-yawAdjusted);
 
                 SailAngle += (DesiredSailAngle - SailAngle) * dt * 4f;
@@ -180,7 +187,8 @@ namespace sailboat
                     if (SailLevel <= 1) esr.OverrideEntityShape.RemoveElementByName("sail_stage_2");
                 }
                 //double windSpeed = weatherSystem.getWeatherDataReader().GetWindSpeed(Pos.AsBlockPos.ToVec3d());
-                esr.OverrideEntityShape.GetElementByName("flag").RotationY = -Pos.Yaw * 57.2958f + 180f;
+                updateWind();
+                esr.OverrideEntityShape.GetElementByName("flag").RotationY = -(Pos.Yaw * 57.2958f + windAngle) + 180f;
             }
             esr.MarkShapeModified();
 
@@ -208,6 +216,37 @@ namespace sailboat
             }
         }
 
+        #region test collision
+        public void tryCollide()
+        {
+            /*Cuboidf[] collisionBoxes = { OriginCollisionBox };
+            if (collisionBoxes == null) return;
+            if (SidedPos.AsBlockPos == null) return;
+            if (World?.GetIntersectingEntities(SidedPos?.AsBlockPos, collisionBoxes) == null) return;
+            Entity[] intersectingEntities = World?.GetIntersectingEntities(SidedPos?.AsBlockPos, collisionBoxes);
+
+            foreach(Entity entity in intersectingEntities)
+            {
+                if (Api.Side == EnumAppSide.Client)
+                {
+                    entity.Pos.Y = Pos.Y + CollisionBox.YSize / 2f;
+                    entity.OnGround = true;
+                }
+                else
+                {
+                    entity.ServerPos.Y = ServerPos.Y + CollisionBox.YSize / 2f;
+                    entity.OnGround = true;
+                }
+            }*/
+        }
+        #endregion
+
+        public void updateWind()
+        {
+            Vec3d windVector = World.BlockAccessor.GetWindSpeedAt(SidedPos.XYZ).Clone();
+            windAngle = Math.Atan2(windVector.Normalize().Z, windVector.Normalize().X) * GameMath.RAD2DEG;
+            windSpeed = World.BlockAccessor.GetWindSpeedAt(SidedPos.XYZ).Length();
+        }
 
         public override void OnGameTick(float dt)
         {
@@ -216,10 +255,19 @@ namespace sailboat
                 updateBoatAngleAndMotion(dt);
             }
 
-            Cuboidf collision = new Cuboidf(0f, 0f, 0f, 1f, 1f, 1f);
+            updateWind();
 
-            //World.CollisionTester.CollisionBoxList.Add(collision, (int)Pos.X, (int)Pos.Y, (int)Pos.Z);
+            //tryCollide();
 
+            ///*
+            #region tests fonctions pour collision
+            Cuboidf collision = new Cuboidf((float)SidedPos.X, (float)SidedPos.Y, (float)SidedPos.Z, (float)SidedPos.X + 1f, (float)SidedPos.Y + 1f, (float)SidedPos.Z + 1f);
+
+            World.CollisionTester.CollisionBoxList.Add(collision, (int)SidedPos.X, (int)SidedPos.Y, (int)SidedPos.Z);
+
+            //World.NearestPlayer(1, 1, 1)?.Entity.CollisionBox.Clone();
+            //*/
+            #endregion
 
             base.OnGameTick(dt);
         }
@@ -275,11 +323,16 @@ namespace sailboat
             var motion = SeatsToMotion(step);
 
             // Add some easing to it
-            float trueYaw = (Pos.Yaw * 57.2958f) % 360f - 180f;
+            float trueYaw = (Pos.Yaw * 57.2958f + (float)windAngle) % 360f - 180f;
             float angleSpeed = (float)(SailAngle + trueYaw / 2f) * (Math.Abs(SailAngle) - Math.Abs(trueYaw) > 1f ? 0f : 1f);
-            double sailMultiplier = clamp(0.0, 1.0, Math.Exp(-Math.Abs(angleSpeed / 30f))) * (Math.Abs(SailAngle) - Math.Abs(trueYaw) > 1f ? 0f : 1f) * (Math.Abs(trueYaw) > 90f ? 1.3f : 1f);
+            double sailMultiplier = clamp(0.0, 1.0, Math.Exp(-Math.Abs(angleSpeed / 30f))) * (Math.Abs(SailAngle) - Math.Abs(trueYaw) > 1f ? 0f : 1f); // Check that the sail is at the right angle n' stuff
 
-            float sailSpeed = (float)(Math.Min(weatherSystem.getWeatherDataReader().GetWindSpeed(Pos.AsBlockPos.ToVec3d()) * 2f, 1.0)) * (SailLevel / 3f) * SpeedMultiplier * (float)sailMultiplier;
+            // Sailing profile calculation
+            //sailMultiplier *= (Math.Abs(trueYaw) > 90f ? 1.3f : 1f); 
+            sailMultiplier *= 1d + 0.3d * Math.Sin(Math.Abs(trueYaw * GameMath.DEG2RAD));
+
+            float sailSpeed = (float)(Math.Min(windSpeed, 1.0)) * (SailLevel / 3f) * SailboatConfig.Current.windMultiplier * (float)sailMultiplier;
+            sailSpeed = Math.Min(sailSpeed, SailboatConfig.Current.hullSpeed);
             realSpeedMultiplier = SailLevel == 0.0 ? (motion.X * 0.75) : (double)sailSpeed * Math.Min(dt, 0.1);
 
 

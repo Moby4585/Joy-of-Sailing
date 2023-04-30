@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>C:\Users\llama\AppData\Roaming\Vintagestory\Lib\0Harmony.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,20 +62,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\util\SailboatConfig.cs" />
+    <Content Include="assets\sailboat\entities\water\sailboat.json" />
+    <Content Include="assets\sailboat\itemtypes\sailboat.json" />
+    <Content Include="assets\sailboat\lang\en.json" />
+    <Content Include="assets\sailboat\recipes\grid\sailboat.json" />
+    <Content Include="assets\sailboat\shapes\sailboat.json" />
     <Content Include="modinfo.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="src\entity\EntitySailboatSeat.cs" />
-    <None Include="assets\sailboat\entities\water\sailboat.json" />
-    <Compile Include="src\entity\EntitySailboat.cs" />
     <Compile Include="src\SailboatMod.cs" />
-    <None Include="assets\sailboat\lang\en.json" />
-    <None Include="assets\sailboat\recipes\grid\sailboat.json" />
-    <None Include="assets\sailboat\shapes\sailboat.json" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="assets\sailboat\itemtypes\sailboat.json" />
+    <Compile Include="src\entity\EntitySailboat.cs" />
+    <Compile Include="src\entity\EntitySailboatSeat.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
