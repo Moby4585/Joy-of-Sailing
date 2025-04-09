@@ -1,0 +1,16 @@
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\assets\game\entities\water\sailboat.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\assets\joyofsailing\lang\en.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\assets\joyofsailing\shapes\entity\water\sailboat-new.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\modinfo.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\joyofsailing2.deps.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\joyofsailing2.dll
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\joyofsailing2.pdb
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\joyofsailing2.csproj.AssemblyReference.cache
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\joyofsailing2.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\joyofsailing2.AssemblyInfoInputs.cache
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\joyofsailing2.AssemblyInfo.cs
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\joyofsailing2.csproj.CoreCompileInputs.cache
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\joyofsailing2.dll
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\refint\joyofsailing2.dll
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\joyofsailing2.pdb
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\obj\Release\ref\joyofsailing2.dll

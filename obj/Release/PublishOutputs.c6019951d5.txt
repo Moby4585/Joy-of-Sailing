@@ -1,0 +1,7 @@
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\publish\assets\game\entities\water\sailboat.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\publish\assets\joyofsailing\lang\en.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\publish\assets\joyofsailing\shapes\entity\water\sailboat-new.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\publish\modinfo.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\publish\joyofsailing2.dll
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\publish\joyofsailing2.deps.json
+D:\Documents\Developpement\_Vintage Story\vsmods_vscode\joyofsailing2\joyofsailing2\bin\Release\Mods\mod\publish\joyofsailing2.pdb

@@ -1,0 +1,541 @@
+{
+  "code": "boat-sailed",
+  "class": "EntitySailboat",
+  "variantgroups": [
+    {
+      "code": "material",
+      "states": [ "aged" ],
+      "loadFromProperties": "block/wood"
+    }
+  ],
+  "attributes": {
+    "deconstructible": true,
+    "deconstructDropsByType": {
+      "boat-sailed-*": [
+        {
+          "type": "item",
+          "code": "plank-{material}",
+          "quantity": 32
+        },
+        {
+          "type": "item",
+          "code": "plank-{material}",
+          "quantity": 32
+        },
+        {
+          "type": "item",
+          "code": "plank-{material}",
+          "quantity": 32
+        },
+        {
+          "type": "item",
+          "code": "plank-{material}",
+          "quantity": 32
+        },
+        {
+          "type": "item",
+          "code": "plank-{material}",
+          "quantity": 16
+        },
+        {
+          "type": "block",
+          "code": "supportbeam-{material}",
+          "quantity": 22
+        },
+        {
+          "type": "item",
+          "code": "rope",
+          "quantity": 13
+        },
+        {
+          "type": "block",
+          "code": "linen-normal-down",
+          "quantity": 15
+        }
+      ]
+    },
+    "shouldSwivelFromMotion": false,
+    "swimmingOffsetYByType": {
+      "boat-sailed-*": 1
+    },
+    "unfurlSailsByType": {
+      "boat-sailed-*": false
+    },
+    "mountAnimationsByType": {
+      "boat-sailed-*": {
+        "idle": "sitboatidle",
+        "ready": "",
+        "forwards": "",
+        "backwards": ""
+      }
+    },
+    "sailAttributes": {
+      "sailLevels": [
+        {
+          "threshold": 0.00001,
+          "disableElements": [
+            "SailUnfurled"
+          ],
+          "enableElements": [
+            "SailFurled"
+          ],
+          "sailSegmentsRotation": {
+
+          }
+        },
+        {
+          "threshold": 0.3,
+          "disableElements": [
+            "SailFurled",
+            "SailMid",
+            "SailBot"
+          ],
+          "enableElements": [
+            "SailTop"
+          ],
+          "sailSegmentsRotation": {
+            "SailTop": 22.5,
+            "SailTopForAP": 22.5
+          }
+        },
+        {
+          "threshold": 0.6,
+          "disableElements": [
+            "SailFurled",
+            "SailBot"
+          ],
+          "enableElements": [
+            "SailTop",
+            "SailMid"
+          ],
+          "sailSegmentsRotation": {
+            "SailTop": 22.5,
+            "SailMid": -22.5,
+            "SailTopForAP": 22.5,
+            "SailMidForAP": -22.5
+          }
+        },
+        {
+          "threshold": 1.1,
+          "disableElements": [
+            "SailFurled"
+          ],
+          "enableElements": [
+            "SailTop",
+            "SailMid",
+            "SailBot"
+          ],
+          "sailSegmentsRotation": {
+            "SailTop": 30,
+            "SailMid": -22.5,
+            "SailBot": -22.5,
+            "SailTopForAP": 30,
+            "SailMidForAP": -22.5,
+            "SailBotForAP": -22.5
+          }
+        }
+      ],
+      "windSpeedMultiplier": 0.3,
+      "minimumWindSpeed": 0.1,
+      "scullSpeed": 0.15,
+      "maximumSailAngle": 70.0,
+      "perfectAngle": 10.0,
+      "falloffAngle": 45.0,
+      "fullyTackedExtraTolerance": 20.0,
+      "speedPitchMultiplier": 0.5,
+      "speedPitchMaximum": 15.0,
+      "rudderRotation": {
+        "rudderTop": 25.0
+      },
+      "sailElements": [
+        "SparORIGIN"
+      ],
+      "flagElements": [
+        "FlagWrap"
+      ],
+      "cordages": [
+
+      ]
+    }
+  },
+  "hitboxSizeByType": {
+    "boat-sailed-*": {
+      "x": 3,
+      "y": 1.2,
+      "z": 3
+    }
+  },
+  "behaviorConfigs": {
+    "ellipsoidalrepulseagentsByType": {
+      "boat-sailed-*": {
+        "offset": {
+          "x": 0.1,
+          "z": 1.5
+        },
+        "__comment": "Not a 3d Ellipse but essentially a 2d ellipse lengthened in the y-axis",
+        "radius": {
+          "x": 1.9,
+          "y": 1.5,
+          "z": 4.6
+        }
+      }
+    },
+    "passivephysicsmultibox": {
+      "collisionBoxes": [
+        {
+          "x1": -1.4,
+          "y1": 0,
+          "z1": 0.1,
+          "x2": 1.4,
+          "y2": 1.2,
+          "z2": 2.9
+        },
+        {
+          "x1": -1.4,
+          "y1": 0,
+          "z1": -2.9,
+          "x2": 1.4,
+          "y2": 1.2,
+          "z2": -0.1
+        },
+        {
+          "x1": -1.4,
+          "y1": 0,
+          "z1": -5.9,
+          "x2": 1.4,
+          "y2": 1.2,
+          "z2": -2.9
+        }
+      ],
+      "groundDragFactor": 1,
+      "airDragFallingFactor": 0.5,
+      "gravityFactor": 1.0
+    },
+    "creaturecarrier": {
+      "__comment": "Note: The FrontSeat selection box originally had that Y-Rotation of 180 degrees - it offseted the player somehow weirdly. Was not able to figure out why. Setting mountRotation works better.",
+      "seats": [
+        {
+          "apName": "LeftSeatAP",
+          "mountOffset": { "x": 0.5 },
+          "bodyYawLimit": 0.4,
+          "eyeHeight": 1
+        },
+        {
+          "apName": "RightSeatAP",
+          "mountOffset": { "x": 0.5 },
+          "bodyYawLimit": 0.4,
+          "controllable": true,
+          "eyeHeight": 1
+        }
+      ]
+    },
+    "rideableaccessories": {
+      "dropContentsOnDeath": true,
+      "__comment": "These need to be in the same order as the selectionBoxes array further down",
+      "wearableSlots": [
+        {
+          "code": "Left Prow Storage",
+          "forCategoryCodes": [ "anchor" ],
+          "attachmentPointCode": "LProwAP",
+          "stepParentTo": {
+            "": { "elementName": "LeftProwStorage" }
+          }
+        },
+        {
+          "code": "Upper Mast Storage",
+          "forCategoryCodes": [ "lantern" ],
+          "attachmentPointCode": "UpperMastAP",
+          "stepParentTo": {
+            "": { "elementName": "UpperMastStorage" }
+          }
+        },
+        {
+          "code": "Figurehead",
+          "forCategoryCodes": [ "chiseledblock" ],
+          "attachmentPointCode": "FigureheadAP",
+          "stepParentTo": {
+            "": { "elementName": "FigureHeadStorage" }
+          }
+        },
+        {
+          "code": "Left Ratlines",
+          "forCategoryCodes": [ "ratlines" ],
+          "attachmentPointCode": "RatlineLAP",
+          "stepParentTo": {
+            "": { "elementName": "RatlineL" }
+          }
+        },
+        {
+          "code": "Right Ratlines",
+          "forCategoryCodes": [ "ratlines" ],
+          "attachmentPointCode": "RatlineRAP",
+          "stepParentTo": {
+            "": { "elementName": "RatlineR" }
+          }
+        },
+        {
+          "code": "Left Storage 1",
+          "forCategoryCodes": [ "seat", "chest", "ropetiepost", "basket", "crate" ],
+          "canMergeWith": [ "Left Storage 2" ],
+          "attachmentPointCode": "LStore1AP",
+          "stepParentTo": {
+            "": { "elementName": "LeftStorage1" }
+          }
+        },
+        {
+          "code": "Left Storage 2",
+          "forCategoryCodes": [ "seat", "chest", "ropetiepost", "basket", "crate" ],
+          "canMergeWith": [ "Left Storage 3" ],
+          "attachmentPointCode": "LStore2AP",
+          "stepParentTo": {
+            "": { "elementName": "LeftStorage2" }
+          }
+        },
+        {
+          "code": "Left Storage 3",
+          "forCategoryCodes": [ "seat", "chest", "ropetiepost", "basket", "crate" ],
+          "canMergeWith": [ "Left Storage 4" ],
+          "attachmentPointCode": "LStore3AP",
+          "stepParentTo": {
+            "": { "elementName": "LeftStorage3" }
+          }
+        },
+        {
+          "code": "Left Storage 4",
+          "forCategoryCodes": [ "seat", "chest", "basket", "crate" ],
+          "attachmentPointCode": "LStore4AP",
+          "stepParentTo": {
+            "": { "elementName": "LeftStorage4" }
+          }
+        },
+        {
+          "code": "Right Storage 1",
+          "forCategoryCodes": [ "seat", "chest", "ropetiepost", "basket", "crate" ],
+          "canMergeWith": [ "Right Storage 2" ],
+          "attachmentPointCode": "RStore1AP",
+          "stepParentTo": {
+            "": { "elementName": "RightStorage1" }
+          }
+        },
+        {
+          "code": "Right Storage 2",
+          "forCategoryCodes": [ "seat", "chest", "ropetiepost", "basket", "crate" ],
+          "canMergeWith": [ "Right Storage 3" ],
+          "attachmentPointCode": "RStore2AP",
+          "stepParentTo": {
+            "": { "elementName": "RightStorage2" }
+          }
+        },
+        {
+          "code": "Right Storage 3",
+          "forCategoryCodes": [ "seat", "chest", "ropetiepost", "basket", "crate" ],
+          "canMergeWith": [ "Right Storage 4" ],
+          "attachmentPointCode": "RStore3AP",
+          "stepParentTo": {
+            "": { "elementName": "RightStorage3" }
+          }
+        },
+        {
+          "code": "Right Storage 4",
+          "forCategoryCodes": [ "seat", "chest", "basket", "crate" ],
+          "attachmentPointCode": "RStore4AP",
+          "stepParentTo": {
+            "": { "elementName": "RightStorage4" }
+          }
+        },
+        {
+          "code": "LeftSeatAP",
+          "forCategoryCodes": []
+        },
+        {
+          "code": "RightSeatAP",
+          "forCategoryCodes": []
+        },
+        {
+          "code": "Lower Mast Storage",
+          "forCategoryCodes": [ "rope" ],
+          "attachmentPointCode": "LowerMastAP",
+          "stepParentTo": {
+            "": { "elementName": "LowerMastStorage" }
+          }
+        },
+        {
+          "code": "Clew Knot R",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "ClewKnotRAP",
+          "stepParentTo": {
+            "": { "elementName": "ClewKnotR" }
+          }
+        },
+        {
+          "code": "Clew Knot L",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "ClewKnotLAP",
+          "stepParentTo": {
+            "": { "elementName": "ClewKnotL" }
+          }
+        },
+        {
+          "code": "Cordage Top Right",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "CordageTopRightAP",
+          "stepParentTo": {
+            "": { "elementName": "CordageTopRight" }
+          }
+        },
+        {
+          "code": "Cordage Top Left",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "CordageTopLeftAP",
+          "stepParentTo": {
+            "": { "elementName": "CordageTopLeft" }
+          }
+        },
+        {
+          "code": "Cordage Mid Right",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "CordageMidRightAP",
+          "stepParentTo": {
+            "": { "elementName": "CordageMidRight" }
+          }
+        },
+        {
+          "code": "Cordage Mid Left",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "CordageMidLeftAP",
+          "stepParentTo": {
+            "": { "elementName": "CordageMidLeft" }
+          }
+        },
+        {
+          "code": "Cordage Bot Right",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "CordageBotRightAP",
+          "stepParentTo": {
+            "": { "elementName": "CordageBotRight" }
+          }
+        },
+        {
+          "code": "Cordage Bot Left",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "CordageBotLeftAP",
+          "stepParentTo": {
+            "": { "elementName": "CordageBotLeft" }
+          }
+        },
+        {
+          "code": "Furled Rope Left",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "FurledRopeLAP",
+          "stepParentTo": {
+            "": { "elementName": "RopeL3" }
+          }
+        },
+        {
+          "code": "Furled Rope Right",
+          "forCategoryCodes": [],
+          "attachmentPointCode": "FurledRopeRAP",
+          "stepParentTo": {
+            "": { "elementName": "Rope4" }
+          }
+        }
+      ]
+    },
+    "selectionboxes": {
+      "__comment": "Modders, make sure the selectionBoxes are in the same order as the wearableSlots, or things can go haywire. Placed chest contents dont get synced properly for example, if wrongly ordered.",
+      "selectionBoxes": [
+        "LProwAP",
+        "UpperMastAP",
+        "FigureheadAP",
+        "RatlineLAP",
+        "RatlineRAP",
+        "LStore1AP",
+        "LStore2AP",
+        "LStore3AP",
+        "LStore4AP",
+        "RStore1AP",
+        "RStore2AP",
+        "RStore3AP",
+        "RStore4AP",
+        "LeftSeatAP",
+        "RightSeatAP",
+        "LowerMastAP",
+        "ClewKnotRAP",
+        "ClewKnotLAP",
+        "CordageTopRightAP",
+        "CordageTopLeftAP",
+        "CordageMidRightAP",
+        "CordageMidLeftAP",
+        "CordageBotRightAP",
+        "CordageBotLeftAP",
+        "FurledRopeLAP",
+        "FurledRopeRAP"
+      ]
+    }
+  },
+  "client": {
+    "size": 1,
+    "renderer": "Shape",
+    "shapeByType": {
+      "boat-sailed-*": {
+        "base": "joyofsailing:entity/water/sailboat-new",
+        "ignoreElements": [ "hideWater" ]
+      }
+    },
+    "animations": [
+      {
+        "code": "turnLeft",
+        "animation": "turnLeft",
+        "animationSpeed": 1,
+        "easeInSpeed": 2,
+        "easeOutSpeed": 2
+      },
+      {
+        "code": "turnRight",
+        "animation": "turnRight",
+        "animationSpeed": 1,
+        "easeInSpeed": 2,
+        "easeOutSpeed": 2
+      }
+    ],
+    "texturesByType": {
+      "*-bamboo": {},
+      "*": {
+        "material": { "base": "game:block/wood/debarked/{material}" },
+        "oak": { "base": "game:block/wood/debarked/{material}" },
+        "oak1": { "base": "game:block/wood/planks/{material}*" },
+        "birch1": { "base": "game:block/wood/planks/{material}*" },
+        "plainoak": { "base": "game:block/wood/debarked/{material}" }
+      }
+    },
+    "behaviors": [
+      {
+        "code": "ellipsoidalrepulseagents",
+        "enabled": true
+      },
+      { "code": "passivephysicsmultibox" },
+      { "code": "interpolateposition" },
+      {
+        "code": "hidewatersurface",
+        "hideWaterElement": "ORIGIN/hideWater/*",
+        "enabled": true
+      },
+      { "code": "selectionboxes" },
+      { "code": "rideableaccessories" },
+      { "code": "creaturecarrier" }
+    ]
+  },
+  "server": {
+    "behaviors": [
+      {
+        "code": "ellipsoidalrepulseagents",
+        "enabled": true
+      },
+      { "code": "passivephysicsmultibox" },
+      { "code": "selectionboxes" },
+      { "code": "rideableaccessories" },
+      { "code": "creaturecarrier" }
+    ]
+  },
+  "sounds": {}
+}
